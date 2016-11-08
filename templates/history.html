@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<table class="history-table">
+    {% for p in posts %}
+        <tr class="history-row">
+            <td class="date-cell">
+               {{p.lastTimeModified.strftime("%b %d, %Y")}}
+            </td>
+            
+            <td class ="content-cell">
+                {{p.content[:100]}}
+            </td>
+            
+            <td class="link-cell">
+                <a class="gray-link" href="{{pagename}}">view</a>
+            </td>
+            
+            {% if user %}
+            <td class="link-cell">
+                <a class="gray-link" href="/_edit{{pagename}}">edit</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
